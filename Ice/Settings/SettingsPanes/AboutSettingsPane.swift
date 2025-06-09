@@ -27,6 +27,11 @@ struct AboutSettingsPane: View {
         // swiftlint:disable:next force_unwrapping
         URL(string: "https://icemenubar.app/Donate")!
     }
+    
+    private var TranslatorURL: URL {
+        // swiftlint:disable:next force_unwrapping
+        URL(string: "https://github.com/2760439882/Ice")!
+    }
 
     private var minFrameDimension: CGFloat {
         min(frame.width, frame.height)
@@ -56,6 +61,11 @@ struct AboutSettingsPane: View {
                 Text(Constants.copyright)
                     .font(.system(size: minFrameDimension / 37))
                     .foregroundStyle(.tertiary)
+                // 翻译人
+                // https://github.com/xiaoxi-bruce
+                // https://github.com/xiaoxi-bruce/Ice
+                Text("xiaoxi 翻译")
+                Text("Copyright 萧熙")
             }
             .fontWeight(.medium)
             .padding([.vertical, .trailing])
@@ -68,6 +78,9 @@ struct AboutSettingsPane: View {
                     NSApp.terminate(nil)
                 }
                 Spacer()
+                Button("译者") {
+                    NSWorkspace.shared.open(TranslatorURL)
+                }
                 Button("Acknowledgements") {
                     NSWorkspace.shared.open(acknowledgementsURL)
                 }
