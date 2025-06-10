@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  push:
+    tags: [ "v*" ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build
+        run: swift build -c release
+        
+      - name: Create DMG
+        run: |
+          hdiutil create -volname "Ice" -srcfolder .build/release/Ice -ov -format UDZO Ice.dmg
+          
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: Ice.dmg
