@@ -1,3 +1,15 @@
+
+## 🚀 一键安装
+
+1. 下载最新版：[Releases页面](https://github.com/xiaoxi-bruce/Ice/releases)
+2. 双击 `Ice.dmg` 并拖拽应用到 `Applications` 文件夹
+3. 首次运行时：
+   ```bash
+   # 如果提示"无法打开"，执行：
+   xattr -rd com.apple.quarantine /Applications/Ice.app
+   ```
+
+
 <div align="center">
     <img src="Ice/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" width=200 height=200>
     <h1>Ice</h1>
