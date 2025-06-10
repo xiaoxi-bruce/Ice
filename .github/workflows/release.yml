@@ -11,13 +11,22 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Build
-        run: swift build -c release
-        
+        run: |
+          swift build -c release
+          mkdir -p dmg_contents
+          cp .build/release/Ice dmg_contents/
+          cp -R zh-Hans.lproj dmg_contents/
+          
       - name: Create DMG
         run: |
-          hdiutil create -volname "Ice" -srcfolder .build/release/Ice -ov -format UDZO Ice.dmg
+          hdiutil create -fs HFS+ \
+            -volname "Ice" \
+            -srcfolder dmg_contents \
+            -ov \
+            -format UDZO \
+            Ice_${GITHUB_REF##*/}.dmg
           
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
-          files: Ice.dmg
+          files: Ice_*.dmg
